@@ -16,8 +16,6 @@ management:
     web:
       exposure:
         include: '*'
-server:
-  port: 8082
 spring:
   mail:
     company: godme
@@ -37,7 +35,7 @@ spring:
             enable: true
             required: true
     protocol: smtp
-    subject: 验证码
+    subject: 验证码1
     template: 您的验证码是:%s
     username: 664473032@qq.com
   rabbitmq:
