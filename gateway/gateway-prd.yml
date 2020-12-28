@@ -1,0 +1,55 @@
+server:
+  port: 9002
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://registry1:8761/eureka,http://registry2:8762/eureka
+    fetch-registry: true
+  instance:
+    instance-id: gateway
+    appname: gateway
+    ip-address: gateway
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          owerCaseServiceId: true
+      routes:
+        - id: code
+          uri: lb://code
+          predicates:
+            - Path=/api/code/**
+          filters:
+            - StripPrefix=2
+        - id: user
+          uri: lb://user
+          predicates:
+            - Path=/api/user/**
+          filters:
+            - StripPrefix=2
+        - id: mail
+          uri: lb://mail
+          predicates:
+            - Path=/api/mail/**
+          filters:
+            - StripPrefix=2
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

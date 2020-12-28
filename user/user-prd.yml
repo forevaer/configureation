@@ -1,0 +1,29 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: user
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+eureka:
+  client:
+    service-url:
+      defaultZone: http://registry1:8761/eureka,http://registry2:8762/eureka
+    fetch-registry: true
+  instance:
+    instance-id: user
+    appname: user
+    ip-address: user
+    prefer-ip-address: true

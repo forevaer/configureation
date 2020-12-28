@@ -1,0 +1,35 @@
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://registry1:8761/eureka,http://registry2:8762/eureka
+    fetch-registry: true
+  instance:
+    instance-id: code
+    appname: code
+    ip-address: code
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: code
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+code:
+  expire: 30
