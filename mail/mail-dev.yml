@@ -1,0 +1,47 @@
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://registry1:8761/eureka,http://registry2:8762/eureka
+  instance:
+    appname: mail
+    instance-id: mail
+    ip-address: mail
+    prefer-ip-address: true
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  port: 8082
+spring:
+  mail:
+    company: godme
+    default-encoding: UTF-8
+    host: smtp.qq.com
+    password: xupnptdtrnmvbchd
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+            port: 465
+          starttls:
+            enable: true
+            required: true
+    protocol: smtp
+    subject: 验证码
+    template: 您的验证码是:%s
+    username: 664473032@qq.com
+  rabbitmq:
+    host: 127.0.0.1
+    password: guest
+    port: 5672
+    username: guest
